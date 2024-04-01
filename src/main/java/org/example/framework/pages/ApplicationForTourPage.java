@@ -1,7 +1,8 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.asserts.assertsElements;
+import org.example.framework.asserts.AssertsElements;
+import org.example.framework.common.CustomActions;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.DataGeneration;
 import org.openqa.selenium.WebElement;
@@ -46,7 +47,7 @@ public class ApplicationForTourPage extends BasePage {
     @Step("Выбор дат в форме брони")
     public ApplicationForTourPage selectingDate() {
         AllureLogger.debug("Selecting date");
-        assertsElements.isElementDisplayed(barOfSelectingTourDate);
+        AssertsElements.checkVisible(barOfSelectingTourDate);
         barOfSelectingTourDate.click();
         dateOfTour.click();
         return this;
@@ -56,7 +57,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringName() {
         String fullName = DataGeneration.generateFullName();
         AllureLogger.debug("Input Name: " + fullName);
-        assertsElements.isElementDisplayedAndClick(textBarName);
+        CustomActions.checkAndClick(textBarName);
         textBarName.sendKeys(fullName);
         return this;
     }
@@ -65,7 +66,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringPhoneNumber() {
         String phoneNumber = DataGeneration.generatePhoneNumber();
         AllureLogger.debug("Input phone number: " + phoneNumber);
-        assertsElements.isElementDisplayedAndClick(textBarPhoneNumber);
+        CustomActions.checkAndClick(textBarPhoneNumber);
         textBarPhoneNumber.sendKeys(phoneNumber);
         return this;
     }
@@ -74,7 +75,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringEmail() {
         String email = DataGeneration.generateEmail();
         AllureLogger.debug("Input email: " + email);
-        assertsElements.isElementDisplayedAndClick(textBarEmail);
+        CustomActions.checkAndClick(textBarEmail);
         textBarEmail.sendKeys(email);
         return this;
     }
@@ -82,14 +83,14 @@ public class ApplicationForTourPage extends BasePage {
     @Step("Отправка заполненной формы брони")
     public ApplicationForTourPage sendApplication() {
         AllureLogger.debug("Clicking to button send");
-        assertsElements.isElementDisplayedAndClick(buttonSendRequest);
+        CustomActions.checkAndClick(buttonSendRequest);
         return this;
     }
 
     @Step("Проверка ошибки")
     public ApplicationForTourPage checkingErrorMessage() {
         AllureLogger.info("Checking message");
-        assertsElements.isElementDisplayed(errorMessageValidatingPhoneNumber);
+        AssertsElements.checkVisible(errorMessageValidatingPhoneNumber);
         System.out.println("Текст ошибки: " + errorMessageValidatingPhoneNumber.getText());
         return this;
     }

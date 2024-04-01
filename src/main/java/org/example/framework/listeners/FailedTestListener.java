@@ -4,7 +4,7 @@ import org.example.framework.logger.AllureLogger;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-public class FiledTestListener extends TestListenerAdapter {
+public class FailedTestListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult result) {

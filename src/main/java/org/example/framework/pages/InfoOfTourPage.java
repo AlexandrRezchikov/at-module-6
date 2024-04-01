@@ -6,6 +6,7 @@ import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class InfoOfTourPage extends BasePage {
 
@@ -38,9 +39,10 @@ public class InfoOfTourPage extends BasePage {
         return this;
     }
 
-    @Step("Првоерка информации о туре на странице тура")
+    @Step("Проверка информации о туре на странице тура")
     public InfoOfTourPage validateInfoOfTour(TourInfo tour) {
         AllureLogger.debug("Проверка информации на странице тура");
+        //SoftAssert
         Assert.assertEquals(price.getText().trim(), tour.getPrice(), "Tour price is not correct!");
         Assert.assertEquals(description.getText().trim(), tour.getDescription(), "Tour description is not correct!");
         Assert.assertEquals(tourName.getText().trim(), tour.getTourName(), "Tour name is not correct!");

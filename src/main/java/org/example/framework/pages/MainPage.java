@@ -109,6 +109,7 @@ public class MainPage extends BasePage {
     @Step("Проверка названий элементов в шапке")
     public MainPage validateElementsNames(HeaderMain headerMain){
         AllureLogger.debug("Проверка названий элементов в шапке");
+        //SoftAssert, метод в Asserts, чтобы выводил инфу по зафейленнному элементу
         Assert.assertEquals(headerTours.getText().trim(), headerMain.getHeaderTours(), "Element name is not correct!");
         Assert.assertEquals(headerRegions.getText().trim(), headerMain.getHeaderRegions(), "Element name is not correct!");
         Assert.assertEquals(headerAirTickets.getText().trim(), headerMain.getHeaderAirTickets(), "Element name is not correct!");

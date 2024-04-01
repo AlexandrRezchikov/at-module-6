@@ -1,7 +1,7 @@
 package org.example.common;
 
 import org.example.framework.common.DriverActions;
-import org.example.framework.listeners.FiledTestListener;
+import org.example.framework.listeners.FailedTestListener;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.pages.AllPages;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,7 +14,7 @@ import org.testng.annotations.Listeners;
 import static org.example.framework.config.Config.CLEAR_COOKIES_AND_STORAGE;
 import static org.example.framework.config.Config.HOLD_BROWSER_OPEN;
 
-@Listeners({FiledTestListener.class})
+@Listeners({FailedTestListener.class})
 public class BaseTest extends AllPages {
 
     public WebDriver driver;
