@@ -10,14 +10,6 @@ import org.testng.asserts.SoftAssert;
 
 public class MainPage extends BasePage {
 
-//    public static final String HEADER_TOURS = "ТУРЫ";
-//    public static final String HEADER_REGIONS = "РЕГИОНЫ";
-//    public static final String HEADER_AIR_TICKETS = "АВИАБИЛЕТЫ";
-//    public static final String HEADER_CORPORATE_TOURS = "КОРПОРАТИВНЫЕ ТУРЫ";
-//    public static final String HEADER_ABOUT_US = "О НАС";
-//    public static final String HEADER_CONTACTS = "КОНТАКТЫ";
-//    public static final String HEADER_BUTTON_REQUEST_CALL = "Заказать звонок";
-
     @FindBy(xpath = "//input[@placeholder='Введите регион, место или тур' and @name='search']")
     private WebElement textBarRegion;
 
