@@ -6,16 +6,17 @@ import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class MainPage extends BasePage {
 
-    public static final String HEADER_TOURS = "ТУРЫ";
-    public static final String HEADER_REGIONS = "РЕГИОНЫ";
-    public static final String HEADER_AIR_TICKETS = "АВИАБИЛЕТЫ";
-    public static final String HEADER_CORPORATE_TOURS = "КОРПОРАТИВНЫЕ ТУРЫ";
-    public static final String HEADER_ABOUT_US = "О НАС";
-    public static final String HEADER_CONTACTS = "КОНТАКТЫ";
-    public static final String HEADER_BUTTON_REQUEST_CALL = "Заказать звонок";
+//    public static final String HEADER_TOURS = "ТУРЫ";
+//    public static final String HEADER_REGIONS = "РЕГИОНЫ";
+//    public static final String HEADER_AIR_TICKETS = "АВИАБИЛЕТЫ";
+//    public static final String HEADER_CORPORATE_TOURS = "КОРПОРАТИВНЫЕ ТУРЫ";
+//    public static final String HEADER_ABOUT_US = "О НАС";
+//    public static final String HEADER_CONTACTS = "КОНТАКТЫ";
+//    public static final String HEADER_BUTTON_REQUEST_CALL = "Заказать звонок";
 
     @FindBy(xpath = "//input[@placeholder='Введите регион, место или тур' and @name='search']")
     private WebElement textBarRegion;
@@ -107,29 +108,18 @@ public class MainPage extends BasePage {
     }
 
     @Step("Проверка названий элементов в шапке")
-    public MainPage validateElementsNames(HeaderMain headerMain){
+    public MainPage validateElementsNames(HeaderMain headerMain) {
         AllureLogger.debug("Проверка названий элементов в шапке");
-        Assert.assertEquals(headerTours.getText().trim(), headerMain.getHeaderTours(), "Element name is not correct!");
-        Assert.assertEquals(headerRegions.getText().trim(), headerMain.getHeaderRegions(), "Element name is not correct!");
-        Assert.assertEquals(headerAirTickets.getText().trim(), headerMain.getHeaderAirTickets(), "Element name is not correct!");
-        Assert.assertEquals(headerCorporateTours.getText().trim(), headerMain.getHeaderCorporateTours(), "Element name is not correct!");
-        Assert.assertEquals(headerAboutUs.getText().trim(), headerMain.getHeaderAboutUs(), "Element name is not correct!");
-        Assert.assertEquals(headerContacts.getText().trim(), headerMain.getHeaderContacts(), "Element name is not correct!");
-        Assert.assertEquals(headerButtonRequestCall.getText().trim(), headerMain.getHeaderButtonRequestCall(), "Element name is not correct!");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(headerTours.getText().trim(), headerMain.getHeaderTours());
+        softAssert.assertEquals(headerRegions.getText().trim(), headerMain.getHeaderRegions());
+        softAssert.assertEquals(headerAirTickets.getText().trim(), headerMain.getHeaderAirTickets());
+        softAssert.assertEquals(headerCorporateTours.getText().trim(), headerMain.getHeaderCorporateTours());
+        softAssert.assertEquals(headerAboutUs.getText().trim(), headerMain.getHeaderAboutUs());
+        softAssert.assertEquals(headerContacts.getText().trim(), headerMain.getHeaderContacts());
+        softAssert.assertEquals(headerButtonRequestCall.getText().trim(), headerMain.getHeaderButtonRequestCall());
+        softAssert.assertAll();
         return this;
     }
-
-//    @Step("Выбор дат на март для тура")
-//    public MainPage selectingDatesOfMarch() {
-//        AllureLogger.debug("Selecting date of march");
-//        textBarDate.click();
-//        waitElementIsVisible(firstDateTour);
-//        Assert.assertTrue(firstDateTour.isDisplayed(), "Element is not displayed");
-//        firstDateTour.click();
-//        waitElementIsVisible(secondDateTour);
-//        Assert.assertTrue(secondDateTour.isDisplayed(), "Element is not displayed");
-//        secondDateTour.click();
-//        return this;
-//    }
 
 }

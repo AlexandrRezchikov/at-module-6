@@ -6,17 +6,9 @@ import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class InfoOfTourPage extends BasePage {
-
-    public static final String PRICE = "26 900 ₽";
-
-    public static final String DESCRIPTION = "Увлекательное путешествие на квадроциклах по лесу. " +
-            "Вы восхититесь разнообразием рельефа, преодолевая ручьи, " +
-            "заболоченные места, поля, лесные дороги. Серьезная борьба с бездорожьем не помешает " +
-            "полюбоваться на дивный лес и маленькие лесные озера — ламбушки.";
-
-    public static final String TOUR_NAME = "Шуйский мультиактив. Квадроциклы и рафтинг";
 
     @FindBy(xpath = "//div[@class='tour-sidebar']//button[contains(., 'Забронировать места')]")
     private WebElement buttonReserve;
@@ -41,9 +33,11 @@ public class InfoOfTourPage extends BasePage {
     @Step("Првоерка информации о туре на странице тура")
     public InfoOfTourPage validateInfoOfTour(TourInfo tour) {
         AllureLogger.debug("Проверка информации на странице тура");
-        Assert.assertEquals(price.getText().trim(), tour.getPrice(), "Tour price is not correct!");
-        Assert.assertEquals(description.getText().trim(), tour.getDescription(), "Tour description is not correct!");
-        Assert.assertEquals(tourName.getText().trim(), tour.getTourName(), "Tour name is not correct!");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(price.getText().trim(), tour.getPrice());
+        softAssert.assertEquals(description.getText().trim(), tour.getDescription());
+        softAssert.assertEquals(tourName.getText().trim(), tour.getTourName());
+        softAssert.assertAll();
         return this;
     }
 }

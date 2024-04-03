@@ -1,13 +1,12 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.asserts.assertsElements;
+import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.Regex;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -51,12 +50,12 @@ public class FiltersForSearchPage extends BasePage {
         AllureLogger.debug("Checking count tour");
         waitElementToBeClickable(buttonNumberOfTours);
         waitTextToBePresentInElement(buttonNumberOfTours);
-        assertsElements.isElementDisplayed(buttonNumberOfTours);
+        AssertsElements.checkVisible(buttonNumberOfTours);
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
         int numberOfCard = cardOfTour.size();
         System.out.println("Карточек туров на странице " + numberOfCard);
-        assertsElements.equalsInteger(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
+        AssertsElements.equalsInteger(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
     }
 
@@ -77,7 +76,7 @@ public class FiltersForSearchPage extends BasePage {
     public FiltersForSearchPage moveSliderPrice() {
         AllureLogger.debug("Changing price of tour");
         DriverActions.getActions().moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
-        assertsElements.isElementDisplayed(buttonNumberOfTours);
+        AssertsElements.checkVisible(buttonNumberOfTours);
         DriverActions.getActions().moveToElement(buttonNumberOfTours).click().perform();
         return this;
     }
